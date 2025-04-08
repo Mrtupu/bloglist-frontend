@@ -18,18 +18,18 @@ const Blog = ({ blog, setBlogs, user }) => {
     }
   }
 
-  console.log(blog.user)
-  console.log(user)
-
+  // console.log(blog.user)
+  // console.log(user)
+  // console.log("Blog User name", blog.user.name)
 
   return (
     <li className='blog'>
-      <div>title: {blog.title}</div>
-      <div>author: {blog.author}</div>
+      <div name="Title">title: {blog.title}</div>
+      <div name="Author">author: {blog.author}</div>
       <Togglable buttonLabel='view' buttonLabel1='hide'>
-        <div>url: {blog.url}</div>
-        <div>likes: {blog.likes} <button onClick={() => likedBlog(blog)}>like</button></div>
-        <div>user: {blog.user.name}</div>
+        <div name="Url">url: {blog.url}</div>
+        <div name="Likes">likes: {blog.likes} <button onClick={() => likedBlog(blog)}>like</button></div>
+        <div name="User">user: {blog.user.name}</div>
         {blog.user && blog.user._id === user.id && (
           <button onClick={() => removeBlog(blog)}>remove</button>
         )}
