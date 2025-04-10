@@ -8,7 +8,7 @@ const Blog = ({ blog, setBlogs, user }) => {
   const likedBlog = async (blog) => {
     const updatedBlog = { ...blog, likes: blog.likes + 1 }
     const returnedBlog = await blogService.put(blog.id, updatedBlog)
-    setBlogs(blogs => blogs.map(b => b.id !== returnedBlog.id ? b : returnedBlog))
+    setBlogs(blogs => blogs.map(b => b.id !== returnedBlog.id ? b : {...returnedBlog, user: blog.user}))
   }
 
   const removeBlog = async (blog) => {
@@ -28,7 +28,7 @@ const Blog = ({ blog, setBlogs, user }) => {
       <div name="Author">author: {blog.author}</div>
       <Togglable buttonLabel='view' buttonLabel1='hide'>
         <div name="Url">url: {blog.url}</div>
-        <div name="Likes">likes: {blog.likes} <button onClick={() => likedBlog(blog)}>like</button></div>
+        <div name="Likes">likes: {blog.likes} <button name="Like" onClick={() => likedBlog(blog)}>like</button></div>
         <div name="User">user: {blog.user.name}</div>
         {blog.user && blog.user._id === user.id && (
           <button onClick={() => removeBlog(blog)}>remove</button>
